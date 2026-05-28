@@ -1,0 +1,22 @@
+services:
+  frontend:
+    build:
+      context: ./airhockey-next
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./airhockey-next:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./airhockey-go
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./airhockey-go:/app
+
